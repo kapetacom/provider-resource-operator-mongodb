@@ -1,41 +1,23 @@
-import React,{Component} from "react";
+import React from "react";
 
-import {FormInput} from "@kapeta/ui-web-components";
+import { FormField } from "@kapeta/ui-web-components";
 
-import {
-    ResourceMetadata,
-    ResourceConfigProps,
-} from "@kapeta/ui-web-types";
-import {observer} from "mobx-react";
-
-function validateDatabaseName(fieldName:string, name:string) {
-    if (!/^[a-z]([a-z0-9_-]*[a-z0-9_])?$/i.test(name)) {
+function validateDatabaseName(fieldName:string, value:string) {
+    if (!/^[a-z]([a-z0-9_-]*[a-z0-9_])?$/i.test(value)) {
         throw new Error('Invalid database name');
     }
 }
 
-@observer
-class MongoDBEditorComponent extends Component<ResourceConfigProps<ResourceMetadata>> {
+const MongoDBEditorComponent = () => {
 
-    private handleMetaDataChanged(name:string, value:string) {
-        const metadata = Object.assign({}, this.props.metadata);
-        metadata[name] = value.trim();
-        this.props.onDataChanged(metadata);
-    }
-
-    render() {
-
-        return (
-            <FormInput
-                name={"name"}
-                value={this.props.metadata.name}
-                label={"Name"}
-                validation={['required', validateDatabaseName]}
-                help={"Name your database"}
-                onChange={(name: string, input: string) => this.handleMetaDataChanged(name, input)}
-            />
-        )
-    }
+    return (
+        <FormField
+            name={"metadata.name"}
+            label={"Name"}
+            validation={['required', validateDatabaseName]}
+            help={"Name your database"}
+        />
+    )
 }
 
 export default MongoDBEditorComponent;
