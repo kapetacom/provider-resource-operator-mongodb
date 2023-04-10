@@ -1,22 +1,23 @@
 import MongoDBEditorComponent from './MongoDBEditorComponent';
 
 import {
-    ResourceConfig,
-    ResourceMetadata,
+    IResourceTypeProvider,
     ResourceRole,
-    ResourceType
+    ResourceProviderType
 } from '@kapeta/ui-web-types';
+import {Metadata} from "@kapeta/schemas";
 
 const definition = require('../../kapeta.yml');
 const packageJson = require('../../package.json');
 
-const config: ResourceConfig<ResourceMetadata> = {
+const resourceTypeProvider: IResourceTypeProvider<Metadata> = {
     kind: definition.metadata.name,
     version: packageJson.version,
     title: definition.metadata.title,
     role: ResourceRole.CONSUMES,
-    type: ResourceType.DATABASE,
-    componentType: MongoDBEditorComponent
+    type: ResourceProviderType.OPERATOR,
+    componentType: MongoDBEditorComponent,
+    definition
 };
 
-export default config;
+export default resourceTypeProvider;
