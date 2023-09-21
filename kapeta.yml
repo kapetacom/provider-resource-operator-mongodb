@@ -3,6 +3,7 @@ metadata:
   name: kapeta/resource-type-mongodb
   title: MongoDB
   description: Use MongoDB in your plans
+  visibility: public
 spec:
   icon:
     type: url
