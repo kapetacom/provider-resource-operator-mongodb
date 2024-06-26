@@ -6,8 +6,12 @@ metadata:
   visibility: public
 spec:
   icon:
-    type: url
-    value: https://storage.googleapis.com/kapeta-public-cdn/icons/mongodb.svg
+    - type: url
+      value: https://storage.googleapis.com/kapeta-public-cdn/icons/themed/mongodb.svg
+      theme: light
+    - type: url
+      value: https://storage.googleapis.com/kapeta-public-cdn/icons/themed/mongodb-light.svg
+      theme: dark
   ports:
     - type: mongodb
   local:
